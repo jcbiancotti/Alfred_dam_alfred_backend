@@ -1,0 +1,12 @@
+{
+    "name": "leeway/google-drive",
+    "require": {
+    "google/apiclient": "^2.1"
+    },
+    "authors": [
+    {
+    "name": "Mauro Chojrin",
+    "email": "mauro.chojrin@leewayweb.com"
+    }
+    ]
+}
