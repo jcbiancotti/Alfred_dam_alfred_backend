@@ -205,7 +205,7 @@ if($auth->isAuth()){
                             }
                             $this->Ln();
 
-                            // Datos
+                            // Datos del informe
                             $c = 0;
                             foreach($renglones as $row)
                             {
