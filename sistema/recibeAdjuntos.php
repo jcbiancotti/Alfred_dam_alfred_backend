@@ -47,23 +47,19 @@ if($auth->isAuth()){
             $recibo = $_FILES['file']['name'];
             $ruta = "./../adjuntos/";
             if(substr($recibo, 0,3) == 'TKT') {
-                $ruta .= 'tickets/' . substr($recibo, 3, 6) . '/';
+                $ruta .= 'tickets/' . substr($recibo, 3, 6);
             }
-            $file_name = $ruta . substr($recibo,3); 
+            $file_name = $ruta  . '/' . substr($recibo,3); 
 
             // Si no hay una carpeta para el ticket la crea
-            if (!file_exists($ruta)) {
+            if (!is_dir($ruta)) {
                 mkdir($ruta, 0777, true);
             }
 
-
-            if(move_uploaded_file($_FILES['file']['tmp_name'], $file_name))
-            {
-                $returnData = msg(1, 200, 'Fichero almacenado con exito ->' . $file_name);
-            }
-            else
-            {
-                $returnData = msg(0, 422, 'Error al intentar almacenar el Fichero ->' . $file_name);
+            if(move_uploaded_file($_FILES['file']['tmp_name'], $file_name)) {
+                $returnData = msg(1, 200, 'Fichero almacenado con exito ->' . ' ---> ' . $file_name);
+            } else {
+                $returnData = msg(0, 422, 'Error al intentar almacenar el Fichero ->' . ' ---> ' . $file_name);
             }
 
         }
