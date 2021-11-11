@@ -77,16 +77,17 @@ if($auth->isAuth()){
             $update_stmt->bindValue(':clave', $clave,PDO::PARAM_STR);
             foreach($campos as $campo) {
 
-                if(isset($objeto[$campo])) {
-                    if(strtolower($campo) == 'contrasenia' || strtolower($campo) == 'password'){
-                        $update_stmt->bindValue(":" . $campo, password_hash(trim($objeto[$campo]), PASSWORD_DEFAULT), PDO::PARAM_STR);
-                    } else {
-                        $update_stmt->bindValue(":" . $campo, htmlspecialchars(strip_tags(trim($objeto[$campo]))), PDO::PARAM_STR);
-                    };
-                } else {
-                    $update_stmt->bindValue(":" . $campo, "", PDO::PARAM_STR);
-                }
+                if(isset($objeto[$campo])){
 
+                        if(strtolower($campo) == 'contrasenia' || strtolower($campo) == 'password'):
+                            $update_stmt->bindValue(":" . $campo, password_hash(trim($objeto[$campo]), PASSWORD_DEFAULT), PDO::PARAM_STR);
+                        else:
+                            $update_stmt->bindValue(":" . $campo, htmlspecialchars(strip_tags(trim($objeto[$campo]))), PDO::PARAM_STR);
+                        endif;
+
+                } else {
+                    $update_stmt->bindValue(":" . $campo, NULL, PDO::PARAM_NULL);
+                }
             }
 
             $update_stmt->execute();
