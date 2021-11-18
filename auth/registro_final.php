@@ -102,7 +102,6 @@ else:
                     $update_query_usr .= "`nombre` = :nombre, ";
                     $update_query_usr .= "`nombre_completo` = :nombre_completo, ";
                     $update_query_usr .= "`telefono_movil` = :telefono_movil, ";
-                    //$update_query_usr .= "`es_admin` = 0, `es_admin_grupos` = 0, `rest_contrasenia` = 0, `cuenta_borrada` = 0, `nrotemporal` = '', ";
                     $update_query_usr .= "`rest_contrasenia` = 0, `nrotemporal` = '', ";
                     $update_query_usr .= "`lopd` = :lopd, ";
                     $update_query_usr .= "`acepta_emails` = :acepta_correos, ";
@@ -143,7 +142,7 @@ else:
 
                         // --------------------------------------------------------------------------------------------- //
                         // Cadena para asignar el grupo
-                        $update_query_grp = "INSERT INTO `rel_usr_grupos` (`clave_usuario`, `clave_grupo`) VALUES (:clave_usuario, :clave_grupo)";
+                        $update_query_grp = "INSERT INTO `rel_usr_grupos` (`padre`, `clave_usuario`, `clave_grupo`) VALUES (:clave_grupo, :clave_usuario, 0)";
 
                         // Actualizar REL_USR_GRUPOS
                         $update_grp_stmt = $conn->prepare($update_query_grp);

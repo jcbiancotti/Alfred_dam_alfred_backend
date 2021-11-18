@@ -47,6 +47,7 @@ class Auth extends JwtHandler{
                 $row = $query_stmt->fetch(PDO::FETCH_ASSOC);
                 
                 $row['rol'] = $this->GetRol($user_id, $row['es_admin'], $row['es_admin_grupos']);
+                $row['padre'] = $this->GetPadre($user_id);
                 
                 return [
                     'success' => 1,
@@ -66,7 +67,7 @@ class Auth extends JwtHandler{
     
         try{
 
-            $fetch_user_by_id = "SELECT `clave_grupo` FROM `rel_usr_grupos` WHERE `clave_usuario` = :id AND `deleted` = 0";
+            $fetch_user_by_id = "SELECT `padre` FROM `rel_usr_grupos` WHERE `clave_usuario` = :id AND `deleted` = 0";
             $query_stmt = $this->db->prepare($fetch_user_by_id);
             $query_stmt->bindValue(':id', $user_id, PDO::PARAM_INT);
             $query_stmt->execute();
@@ -77,7 +78,7 @@ class Auth extends JwtHandler{
 
                 $results = array();
                 while($results = $query_stmt->fetch(PDO::FETCH_ASSOC)){
-                    if($results['clave_grupo'] == 1):
+                    if($results['padre'] == 1):
                         $es_cli = 'CLIENTE';
                     endif;
                 }
@@ -100,4 +101,32 @@ class Auth extends JwtHandler{
         }
     
     }
+
+    protected function GetPadre($user_id){
+    
+        try{
+
+            $fetch_user_by_id = "SELECT `padre` FROM `rel_usr_grupos` WHERE `clave_usuario` = :id AND `deleted` = 0";
+            $query_stmt = $this->db->prepare($fetch_user_by_id);
+            $query_stmt->bindValue(':id', $user_id, PDO::PARAM_INT);
+            $query_stmt->execute();
+
+            $es_padre = 0;
+
+            if($query_stmt->rowCount()):
+
+                $results = array();
+                while($results = $query_stmt->fetch(PDO::FETCH_ASSOC)){
+                    $es_padre = $results['padre'];
+                }
+
+            endif;
+            return $es_padre;
+            
+
+        } catch(PDOException $e){
+            return 'ROL ERROR';
+        }
+    
+    }    
 }
