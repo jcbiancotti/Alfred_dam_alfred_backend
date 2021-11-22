@@ -181,7 +181,7 @@ else:
         endif;
     }
     catch(PDOException $e){
-        $returnData = msg(0, 500, $e->getMessage() . $update_query);
+        $returnData = msg(0, 500, $e->getMessage());
     }
 endif;
 
