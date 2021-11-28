@@ -48,6 +48,7 @@ class Auth extends JwtHandler{
                 
                 $row['rol'] = $this->GetRol($user_id, $row['es_admin'], $row['es_admin_grupos']);
                 $row['padre'] = $this->GetPadre($user_id);
+                $row['abuelo'] = $this->GetPadre($row['padre']);
                 
                 return [
                     'success' => 1,

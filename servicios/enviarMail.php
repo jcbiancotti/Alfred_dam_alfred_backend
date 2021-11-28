@@ -48,12 +48,14 @@ if($auth->isAuth()){
     elseif(!isset($datos['destino'])
         || !isset($datos['asunto'])
         || !isset($datos['mensaje'])
+        || !isset($datos['referencia'])
         || empty(trim($datos['destino']))
         || empty(trim($datos['asunto']))
         || empty(trim($datos['mensaje']))
+        || empty(trim($datos['referencia']))
         ):
 
-        $fields = ['fields' => ['destino', 'asunto','mensaje']];
+        $fields = ['fields' => ['destino', 'asunto','mensaje', 'referencia']];
         $returnData = msg(0, 422, 'Faltan datos necesarios!', $fields); 
 
     // Si se han recibido los datos necesarios
@@ -62,6 +64,7 @@ if($auth->isAuth()){
         $destino = trim($datos['destino']);
         $asunto = trim($datos['asunto']);
         $mensaje = trim($datos['mensaje']);
+        $referencia = trim($datos['referencia']);
         //////////////////////////////////////////////////////////////////////////////////
         try{
 
@@ -69,6 +72,10 @@ if($auth->isAuth()){
             $texto =  '<img src="https://biancotti.es/dam_alfred_backend/assets/img/alfred-logo-header.png" width="150" height="60" alt="Alfred-app!">';
             $texto .= '<p>' . $mensaje . '</p>';
             $texto .= '<BR>';
+            if($referencia != '') {
+                $texto .= '<p>Puedes acceder al ticket mediante el siguiente enlace </p>';
+                $texto .= '<p><a href="http://localhost:8081/edita_ticket/onboarding/' . $referencia . '">Pincha aquí</a></p>';
+            }
             $texto .= '<p>Recibes este correo porque has autorizado las comunicaciones por email desde Alfred, la aplicación de atención al cliente de LA EMPRESA S.L.</p>';
             $texto .= '<p>Si deseas dejar de recibir estas comunicaciones indícalo en tu perfil de la aplicación.</p>';
 
