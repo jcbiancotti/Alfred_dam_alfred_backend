@@ -26,7 +26,7 @@ class Auth extends JwtHandler{
                 endif; // End of isset($this->token[1]) && !empty(trim($this->token[1]))
             else:
                 return null;
-            endif;// End of isset($this->token[1]) && !empty(trim($this->token[1]))
+            endif; // End of isset($this->token[1]) && !empty(trim($this->token[1]))
 
         else:
             return null;
@@ -48,7 +48,7 @@ class Auth extends JwtHandler{
                 
                 $row['rol'] = $this->GetRol($user_id, $row['es_admin'], $row['es_admin_grupos']);
                 $row['padre'] = $this->GetPadre($user_id);
-                $row['abuelo'] = $this->GetPadre($row['padre']);
+                $row['abuelo'] = $this->GetAbuelo($row['padre']);
                 
                 return [
                     'success' => 1,
@@ -130,4 +130,33 @@ class Auth extends JwtHandler{
         }
     
     }    
+
+    protected function GetAbuelo($user_id){
+    
+        try{
+
+            $fetch_user_by_id = "SELECT `padre` FROM `rel_usr_grupos` WHERE `clave_grupo` = :id AND `deleted` = 0";
+            $query_stmt = $this->db->prepare($fetch_user_by_id);
+            $query_stmt->bindValue(':id', $user_id, PDO::PARAM_INT);
+            $query_stmt->execute();
+
+            $es_abuelo = 0;
+
+            if($query_stmt->rowCount()):
+
+                $results = array();
+                while($results = $query_stmt->fetch(PDO::FETCH_ASSOC)){
+                    $es_abuelo = $results['padre'];
+                }
+
+            endif;
+            return $es_abuelo;
+            
+
+        } catch(PDOException $e){
+            return 'ROL ERROR';
+        }
+    
+    } 
+
 }

@@ -11,7 +11,9 @@ class AlfredMails{
 
     public function emEnviar($txtDestino, $txtAsunto, $txtCuerpo){
 
-        $headers = "MIME-Version: 1.0" . "\r\n";
+        // Datos del email
+        $headers = "From:alf.correos@gmail.com". "\r\n";
+        $headers .= "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
         $mensaje = "<html><head><title>" . $txtAsunto . "</title></head><body>" . $txtCuerpo . "</body></html>";
 

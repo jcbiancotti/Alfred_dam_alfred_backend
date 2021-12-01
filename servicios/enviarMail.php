@@ -74,7 +74,7 @@ if($auth->isAuth()){
             $texto .= '<BR>';
             if($referencia != '') {
                 $texto .= '<p>Puedes acceder al ticket mediante el siguiente enlace </p>';
-                $texto .= '<p><a href="http://localhost:8081/edita_ticket/onboarding/' . $referencia . '">Pincha aquí</a></p>';
+                $texto .= '<p><a href="https://biancotti.es/#/edita_ticket/onboarding/' . $referencia . '">Pincha aquí</a></p>';
             }
             $texto .= '<p>Recibes este correo porque has autorizado las comunicaciones por email desde Alfred, la aplicación de atención al cliente de LA EMPRESA S.L.</p>';
             $texto .= '<p>Si deseas dejar de recibir estas comunicaciones indícalo en tu perfil de la aplicación.</p>';

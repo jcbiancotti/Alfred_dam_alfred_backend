@@ -124,7 +124,7 @@ else:
                 $texto =  '<img src="https://biancotti.es/dam_alfred_backend/assets/img/alfred-logo-header.png" width="150" height="60" alt="Alfred-app!">';
                 $texto .= '<p><h1>' . $nombre . ',</h1></p><p>Te damos la bienvenida. Estas a un click de completar el registro en la aplicación.</p>';
                 $texto .= '<p>Pincha en el siguiente enlace y habremos terminado.</p>';
-                $texto .= '<p><a href="http://localhost:8081/registro_fin/' . $email . '/' . $nroRegistro . '">Pincha aquí</a></p>';
+                $texto .= '<p><a href="https://biancotti.es/#/registro_fin/' . $email . '/' . $nroRegistro . '">Pincha aquí</a></p>';
                 $texto .= '<BR>';
                 $texto .= '<p>Recibes este correo porque has solicitado registrarte en Alfred.es. Si no has sido tú, ignóralo.</p>';
 

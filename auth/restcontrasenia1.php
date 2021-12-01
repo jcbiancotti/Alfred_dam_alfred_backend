@@ -89,7 +89,7 @@ else:
             $texto =  '<img src="https://biancotti.es/dam_alfred_backend/assets/img/alfred-logo-header.png" width="150" height="60" alt="Alfred-app!">';
             $texto .= '<p><h1>' . $nombre . ',</h1></p><p>Te hemos enviado este correo porque has solicitado restablecer la contraseña.</p>';
             $texto .= '<p>Pincha en el siguiente enlace y podrás establecer una nueva.</p>';
-            $texto .= '<p><a href="http://localhost:8081/restcontrasenia2/' . $correo . '/' . $nroRegistro . '/' . $oldpass . '">Pincha aquí</a></p>';
+            $texto .= '<p><a href="https://biancotti.es/#/restcontrasenia2/' . $correo . '/' . $nroRegistro . '/' . $oldpass . '">Pincha aquí</a></p>';
             $texto .= '<BR>';
 
             $alf_correos->emEnviar($correo, 'Completa el cambio de contraseña!', $texto);

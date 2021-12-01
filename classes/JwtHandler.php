@@ -20,14 +20,14 @@ class JwtHandler {
         $this->issuedAt = time();
         
         // Token Validity (3600 second = 1hr)
-        $this->expire = $this->issuedAt + 3600;
+        $this->expire = $this->issuedAt +(3600*24);
 
         // Set your secret or signature
         $this->jwt_secrect = "this_is_my_secrect";  
     }
 
     // ENCODING THE TOKEN
-    public function _jwt_encode_data($iss,$data){
+    public function _jwt_encode_data($iss, $data){
 
         $this->token = array(
             //Adding the identifier to the token (who issue the token)
